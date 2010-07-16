@@ -39,6 +39,10 @@ module Rack
             rack[k] = v
           elsif k.index("rack-bug.") == 0
             #don't output the rack-bug variables - especially secret_key
+          elsif k.index("warden") == 0
+            # don't output Warden because it is ENORMOUS
+          elsif k.index("action_controller.instance") == 0
+            # this one is also massive
           else
             server[k] = v
           end
